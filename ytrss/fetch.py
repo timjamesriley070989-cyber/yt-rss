@@ -9,7 +9,7 @@ from ytrss.feed import feed_url, parse_feed
 USER_AGENT = "yt-rss-dashboard/1.0 (+https://github.com)"
 
 
-def fetch_feed(channel_id: str, *, timeout: float = 15.0, retries: int = 3) -> str:
+def fetch_feed(channel_id: str, *, timeout: float = 15.0, retries: int = 2) -> str:
     url = feed_url(channel_id)
     last_err = None
     for attempt in range(retries + 1):
@@ -20,8 +20,9 @@ def fetch_feed(channel_id: str, *, timeout: float = 15.0, retries: int = 3) -> s
         except Exception as err:  # noqa: BLE001 - any network/parse error is retryable
             last_err = err
             if attempt < retries:
-                # Exponential backoff with jitter — recovers from transient 429 throttling.
-                time.sleep(min(8.0, 2 ** attempt) + random.uniform(0, 0.5))
+                # Short backoff + jitter: recovers quick blips without dragging out a
+                # run when the IP is being sustained-throttled (better fast-and-partial).
+                time.sleep(0.5 * (attempt + 1) + random.uniform(0, 0.3))
     raise last_err
 
 
