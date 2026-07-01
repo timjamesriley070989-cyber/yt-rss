@@ -31,9 +31,12 @@ def fetch_all(
     *,
     fetcher: Callable[[str], str] = fetch_feed,
     concurrency: int = 12,
-) -> tuple[list[Video], list[str]]:
-    videos: list[Video] = []
-    failed: list[str] = []
+) -> tuple[dict[str, list[Video]], list[Channel]]:
+    """Fetch every channel's feed in parallel. Returns (fetched, failed) where
+    `fetched` maps channel_id -> parsed videos for channels that succeeded, and
+    `failed` is the list of Channels whose fetch or parse failed."""
+    fetched: dict[str, list[Video]] = {}
+    failed: list[Channel] = []
 
     def work(channel: Channel):
         return channel, fetcher(channel.channel_id)
@@ -41,13 +44,13 @@ def fetch_all(
     with ThreadPoolExecutor(max_workers=concurrency) as pool:
         for channel, result in _imap(pool, work, channels):
             if result is None:
-                failed.append(channel.title)
+                failed.append(channel)
             else:
                 try:
-                    videos.extend(parse_feed(result))
-                except Exception:  # noqa: BLE001 - malformed feed = skip channel
-                    failed.append(channel.title)
-    return videos, failed
+                    fetched[channel.channel_id] = parse_feed(result)
+                except Exception:  # noqa: BLE001 - malformed feed = failed channel
+                    failed.append(channel)
+    return fetched, failed
 
 
 def _imap(pool, work, channels):

@@ -9,13 +9,13 @@ def _channels(n):
     return [Channel(channel_id=f"c{i}", title=f"t{i}", url="u") for i in range(n)]
 
 
-def test_fetch_all_collects_videos_and_skips_failures():
+def test_fetch_all_returns_per_channel_success_and_failures():
     def fake_fetcher(channel_id):
         if channel_id == "c1":
             raise TimeoutError("boom")
         return SAMPLE
 
-    videos, failed = fetch_all(_channels(3), fetcher=fake_fetcher, concurrency=3)
-    assert len(failed) == 1
-    assert failed == ["t1"]
-    assert len(videos) > 0  # two channels' worth of entries parsed
+    fetched, failed = fetch_all(_channels(3), fetcher=fake_fetcher, concurrency=3)
+    assert set(fetched.keys()) == {"c0", "c2"}
+    assert all(len(v) > 0 for v in fetched.values())          # entries parsed
+    assert [c.channel_id for c in failed] == ["c1"]           # Channel objects
