@@ -2,7 +2,7 @@ import json
 import sys
 from datetime import datetime
 from pathlib import Path
-from ytrss.models import Video
+from ytrss.models import Channel, Video
 
 
 def video_to_dict(v: Video) -> dict:
@@ -56,3 +56,30 @@ def save_cache(path: str, feeds_by_channel: dict[str, list[Video]]) -> None:
         p.write_text(json.dumps(data))
     except OSError as err:  # noqa: BLE001 - cache save must not fail the build
         print(f"warning: could not save cache to {path}: {err}", file=sys.stderr)
+
+
+def merge_feeds(
+    channels: list[Channel],
+    fetched: dict[str, list[Video]],
+    cache: dict[str, list[Video]],
+) -> tuple[dict[str, list[Video]], int, int]:
+    """Combine fresh fetches with cached data for the current channel set.
+
+    Fresh entries win; a channel absent from `fetched` falls back to `cache`;
+    a channel in neither yields []. Returns (new_cache, fell_back, missing) where
+    new_cache is keyed only by current-OPML channel ids.
+    """
+    new_cache: dict[str, list[Video]] = {}
+    fell_back = 0
+    missing = 0
+    for channel in channels:
+        cid = channel.channel_id
+        if cid in fetched:
+            new_cache[cid] = fetched[cid]
+        elif cache.get(cid):
+            new_cache[cid] = cache[cid]
+            fell_back += 1
+        else:
+            new_cache[cid] = []
+            missing += 1
+    return new_cache, fell_back, missing
