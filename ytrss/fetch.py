@@ -1,3 +1,4 @@
+import random
 import time
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -8,7 +9,7 @@ from ytrss.feed import feed_url, parse_feed
 USER_AGENT = "yt-rss-dashboard/1.0 (+https://github.com)"
 
 
-def fetch_feed(channel_id: str, *, timeout: float = 15.0, retries: int = 1) -> str:
+def fetch_feed(channel_id: str, *, timeout: float = 15.0, retries: int = 3) -> str:
     url = feed_url(channel_id)
     last_err = None
     for attempt in range(retries + 1):
@@ -19,7 +20,8 @@ def fetch_feed(channel_id: str, *, timeout: float = 15.0, retries: int = 1) -> s
         except Exception as err:  # noqa: BLE001 - any network/parse error is retryable
             last_err = err
             if attempt < retries:
-                time.sleep(1.0 * (attempt + 1))
+                # Exponential backoff with jitter — recovers from transient 429 throttling.
+                time.sleep(min(8.0, 2 ** attempt) + random.uniform(0, 0.5))
     raise last_err
 
 
