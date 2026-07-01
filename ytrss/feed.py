@@ -14,7 +14,7 @@ def feed_url(channel_id: str) -> str:
 def parse_feed(xml_text: str) -> list[Video]:
     root = ET.fromstring(xml_text)
     channel_title_el = root.find(f"{ATOM}title")
-    channel_title = channel_title_el.text if channel_title_el is not None else ""
+    channel_title = (channel_title_el.text or "") if channel_title_el is not None else ""
 
     videos: list[Video] = []
     for entry in root.findall(f"{ATOM}entry"):
@@ -24,10 +24,13 @@ def parse_feed(xml_text: str) -> list[Video]:
         thumb_el = entry.find(f"{MEDIA}group/{MEDIA}thumbnail")
         if video_id_el is None or published_el is None:
             continue
+        video_id = video_id_el.text
+        if not video_id or not published_el.text:
+            continue
         videos.append(
             Video(
-                video_id=video_id_el.text,
-                title=title_el.text if title_el is not None else "",
+                video_id=video_id,
+                title=(title_el.text or "") if title_el is not None else "",
                 channel_title=channel_title,
                 published=datetime.fromisoformat(published_el.text),
                 thumbnail=thumb_el.get("url") if thumb_el is not None else "",

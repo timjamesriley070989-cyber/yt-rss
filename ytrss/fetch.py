@@ -1,6 +1,6 @@
 import time
 import urllib.request
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Callable
 from ytrss.models import Channel, Video
 from ytrss.feed import feed_url, parse_feed
@@ -49,8 +49,6 @@ def fetch_all(
 
 def _imap(pool, work, channels):
     futures = {pool.submit(work, c): c for c in channels}
-    from concurrent.futures import as_completed
-
     for future in as_completed(futures):
         channel = futures[future]
         try:

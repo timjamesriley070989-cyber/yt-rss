@@ -1,3 +1,4 @@
+import re
 from datetime import datetime, timedelta, timezone
 from ytrss.models import Video
 from ytrss.render import relative_time, day_label, group_by_day
@@ -37,15 +38,23 @@ from ytrss.render import render_html
 
 
 def test_render_html_contains_video_and_is_self_contained():
-    videos = [_video(NOW - timedelta(hours=1), title="My Video", channel="Chan")]
-    html = render_html(videos, now=NOW, failed_count=0)
+    video = Video(
+        video_id="x",
+        title="My Video",
+        channel_title="Chan",
+        published=NOW - timedelta(hours=1),
+        thumbnail="https://i3.ytimg.com/vi/x/hqdefault.jpg",
+    )
+    html = render_html([video], now=NOW, failed_count=0)
     assert "My Video" in html
     assert "Chan" in html
     assert "Today" in html
     assert "https://www.youtube.com/watch?v=x" in html
     # self-contained: no external CSS/JS files referenced
-    assert "<link rel=\"stylesheet\"" not in html
-    assert "src=\"http" not in html.replace("https://i.ytimg.com", "")  # only thumbnails are remote
+    assert '<link rel="stylesheet"' not in html
+    # the only remote resource is the thumbnail, on a ytimg.com CDN host
+    stripped = re.sub(r"https://i\d*\.ytimg\.com", "", html)
+    assert 'src="http' not in stripped
 
 
 def test_render_html_reports_failures():
