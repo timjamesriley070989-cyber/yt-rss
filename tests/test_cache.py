@@ -32,6 +32,15 @@ def test_corrupt_file_returns_empty(tmp_path):
     assert load_cache(str(path)) == {}
 
 
+def test_structurally_malformed_but_valid_json_returns_empty(tmp_path):
+    # valid JSON, wrong shapes — a truncated/partial cache restore could produce these
+    for junk in ('{"feeds": [1,2,3]}', '{"feeds": {"c1": 5}}', '{"feeds": {"c1": null}}'):
+        path = tmp_path / "feeds.json"
+        path.write_text(junk)
+        loaded = load_cache(str(path))  # must not raise
+        assert isinstance(loaded, dict)
+
+
 def test_bad_record_is_skipped(tmp_path):
     path = tmp_path / "feeds.json"
     path.write_text('{"feeds": {"c1": [{"video_id": "a"}, {"bogus": 1}]}}')

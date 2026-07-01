@@ -32,8 +32,12 @@ def load_cache(path: str) -> dict[str, list[Video]]:
         feeds = raw.get("feeds", {})
     except (OSError, ValueError, AttributeError):
         return {}
+    if not isinstance(feeds, dict):
+        return {}
     result: dict[str, list[Video]] = {}
     for channel_id, records in feeds.items():
+        if not isinstance(records, list):
+            continue
         videos: list[Video] = []
         for rec in records:
             try:
