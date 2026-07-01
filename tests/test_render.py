@@ -1,14 +1,9 @@
 import re
 from datetime import datetime, timedelta, timezone
 from ytrss.models import Video
-from ytrss.render import relative_time, day_label, group_by_day
+from ytrss.render import relative_time, render_html
 
 NOW = datetime(2026, 6, 30, 12, 0, tzinfo=timezone.utc)
-
-
-def _video(when: datetime, title="t", channel="c") -> Video:
-    return Video(video_id="x", title=title, channel_title=channel,
-                 published=when, thumbnail="")
 
 
 def test_relative_time():
@@ -17,27 +12,7 @@ def test_relative_time():
     assert relative_time(NOW - timedelta(days=3), NOW) == "3d ago"
 
 
-def test_day_label():
-    assert day_label(NOW, NOW) == "Today"
-    assert day_label(NOW - timedelta(days=1), NOW) == "Yesterday"
-    assert day_label(datetime(2026, 6, 20, 9, 0, tzinfo=timezone.utc), NOW) == "Jun 20, 2026"
-
-
-def test_group_by_day_orders_groups_newest_first():
-    videos = [
-        _video(NOW - timedelta(hours=1)),
-        _video(NOW - timedelta(days=1, hours=1)),
-        _video(NOW - timedelta(hours=2)),
-    ]
-    groups = group_by_day(videos, NOW)
-    assert [label for label, _ in groups] == ["Today", "Yesterday"]
-    assert len(groups[0][1]) == 2
-
-
-from ytrss.render import render_html
-
-
-def test_render_html_contains_video_and_is_self_contained():
+def test_render_html_renders_cards_and_is_self_contained():
     video = Video(
         video_id="x",
         title="My Video",
@@ -46,10 +21,12 @@ def test_render_html_contains_video_and_is_self_contained():
         thumbnail="https://i3.ytimg.com/vi/x/hqdefault.jpg",
     )
     html = render_html([video], now=NOW, failed_count=0)
+    assert 'class="card"' in html
     assert "My Video" in html
     assert "Chan" in html
-    assert "Today" in html
     assert "https://www.youtube.com/watch?v=x" in html
+    # grid layout, not the old list
+    assert "grid-template-columns" in html
     # self-contained: no external CSS/JS files referenced
     assert '<link rel="stylesheet"' not in html
     # the only remote resource is the thumbnail, on a ytimg.com CDN host
@@ -57,7 +34,7 @@ def test_render_html_contains_video_and_is_self_contained():
     assert 'src="http' not in stripped
 
 
-def test_render_html_reports_failures():
+def test_render_html_reports_failures_and_empty_state():
     html = render_html([], now=NOW, failed_count=7)
     assert "7" in html
-    assert "no recent uploads" in html.lower()
+    assert "no uploads in the last 24 hours" in html.lower()

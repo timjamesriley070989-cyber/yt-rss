@@ -2,15 +2,17 @@
 
 A static dashboard of recent uploads from my YouTube subscriptions.
 
-- Merged, newest-first timeline of the **last 14 days** across all subscribed channels.
-- Grouped by day, filterable by channel, with "new since last visit" highlighting.
+- Newest-first **grid** of uploads from the **last 24 hours** across all subscribed channels.
+- Filterable by channel, with "new since last visit" highlighting.
+- **Shorts are filtered out** (detected via the youtube.com/shorts/<id> redirect heuristic).
 - Data comes from YouTube's public per-channel RSS feeds (no API key).
 
 ## Run locally
 
 ```bash
 python3 build.py                 # builds dist/index.html for all channels
-python3 build.py --output out.html --window-days 7
+python3 build.py --window-hours 48   # widen the time window
+python3 build.py --keep-shorts       # skip Shorts filtering
 open dist/index.html
 ```
 
