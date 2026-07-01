@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns:yt="http://www.youtube.com/xml/schemas/2015" xmlns:media="http://search.yahoo.com/mrss/" xmlns="http://www.w3.org/2005/Atom">
+ <link rel="self" href="http://www.youtube.com/feeds/videos.xml?channel_id=UC-9uQ57m8AVd2Q1MCaZgutA"/>
+ <id>yt:channel:-9uQ57m8AVd2Q1MCaZgutA</id>
+ <yt:channelId>-9uQ57m8AVd2Q1MCaZgutA</yt:channelId>
+ <title>Gael Breton</title>
+ <link rel="alternate" href="https://www.youtube.com/channel/UC-9uQ57m8AVd2Q1MCaZgutA"/>
+ <author>
+  <name>Gael Breton</name>
+  <uri>https://www.youtube.com/channel/UC-9uQ57m8AVd2Q1MCaZgutA</uri>
+ </author>
+ <published>2017-04-03T07:34:51+00:00</published>
+ <entry>
+  <id>yt:video:zET_MTrITeI</id>
+  <yt:videoId>zET_MTrITeI</yt:videoId>
+  <yt:channelId>UC-9uQ57m8AVd2Q1MCaZgutA</yt:channelId>
+  <title>I Cloned My Favorite YouTubers With AI (Here's How)</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=zET_MTrITeI"/>
+  <author>
+   <name>Gael Breton</name>
+   <uri>https://www.youtube.com/channel/UC-9uQ57m8AVd2Q1MCaZgutA</uri>
+  </author>
+  <published>2025-07-28T12:25:08+00:00</published>
+  <updated>2026-05-05T01:08:58+00:00</updated>
+  <media:group>
+   <media:title>I Cloned My Favorite YouTubers With AI (Here's How)</media:title>
+   <media:content url="https://www.youtube.com/v/zET_MTrITeI?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i3.ytimg.com/vi/zET_MTrITeI/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Want to get coached by me? Book your free appointment: https://www.systemstack.ai/
+
+Tired of generic AI answers? In this video, I show you how to build a custom AI &quot;clone&quot; of any expert (like Alex Hormozi or Ali Abdaal) using a free tool from Google.
+
+Learn the step-by-step process to train a personal AI mentor on any YouTube channel's content. Using Google's NotebookLM and two simple Chrome extensions, you can create a chatbot that provides deep, experienced advice in minutes—no coding required.
+
+Who is the first expert you're going to clone? Let me know in the comments!
+
+LINKS
+
+NotebookLM: https://notebooklm.google/
+Grabbit Chrome extension: https://chromewebstore.google.com/detail/grabbit/madmdgpjgagdmmmiddpiggdnpgjglcdk
+Websync full site importer: https://chromewebstore.google.com/detail/websync-full-site-importe/hjoonjdnhagnpfgifhjolheimamcafok
+
+PROMPT
+Act as a chatbot that perfectly mimics the voice, tone, and style of the video creator from the sources. Use their catchphrases, humor, values, and energy. Never break character or mention you’re an AI. Always respond in a helpful way as if you’re the creator, chatting naturally. Match their vibe—whether it’s bold, chill, sarcastic, deep, or nerdy. Stay in style. Be them.
+
+CHAPTERS
+00:00 - The Problem with Generic AI
+00:40 - The Solution: Cloning Your Favorite Influencers
+01:05 - Generic AI vs. Influencer Clone: A Comparison
+03:13 - How to Clone a YouTuber's Brain
+05:40 - Customizing the AI's Personality
+06:58 - Free vs. Paid: NotebookLM's Limitations
+07:44 - Outro: Who Will You Clone?</media:description>
+   <media:community>
+    <media:starRating count="150" average="5.00" min="1" max="5"/>
+    <media:statistics views="3295"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:gMchbSDsCwU</id>
+  <yt:videoId>gMchbSDsCwU</yt:videoId>
+  <yt:channelId>UC-9uQ57m8AVd2Q1MCaZgutA</yt:channelId>
+  <title>10 Gemini Productivity Hacks That Make ChatGPT Obsolete</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=gMchbSDsCwU"/>
+  <author>
+   <name>Gael Breton</name>
+   <uri>https://www.youtube.com/channel/UC-9uQ57m8AVd2Q1MCaZgutA</uri>
+  </author>
+  <published>2025-06-20T10:08:52+00:00</published>
+  <updated>2026-04-30T07:24:38+00:00</updated>
+  <media:group>
+   <media:title>10 Gemini Productivity Hacks That Make ChatGPT Obsolete</media:title>
+   <media:content url="https://www.youtube.com/v/gMchbSDsCwU?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i4.ytimg.com/vi/gMchbSDsCwU/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Get ALL the Prompts used in this video: https://www.authorityhacker.com/freebies/ai-tools/
+
+I got so much more done after I switched from ChatGPT to Google Gemini, and it's all because of one thing: deep integration. Gemini is already built into the Google Workspace apps you use every day, making it a productivity powerhouse.
+
+In this step-by-step tutorial, I'll show you the 10 game-changing Gemini productivity hacks that make it an essential tool for work. You’ll get the exact workflows and prompts I use to save time and automate complex tasks.
+
+🔥 You will learn how to:
+
+✅ Hack #1: Google Meet - Get free, automatic call notes and transcripts, and stop paying for tools like Otter.ai.
+✅ Hack #2: Gmail - Instantly draft emails using call notes as context and build a custom AI &quot;Gem&quot; that replies in your unique style.
+✅ Hack #3: Google Sheets - Analyze data, create graphs, and write complex formulas just by asking questions in plain English.
+✅ Hack #4: Google Docs - Turn a 30-minute client call into a fully written, professional proposal in seconds.
+✅ Hack #5: NotebookLM - Upload your own documents to turn Gemini into an expert coach that analyzes your work and gives you feedback.
+
+TIMESTAMPS
+00:00:00 Intro
+00:00:29 Hack #1
+00:02:35 Hack #2
+00:03:45 Hack #3
+00:05:12 Hack #4
+00:06:26 Hack #5
+00:07:07 Hack #6
+00:11:13 Hack #7
+00:12:03 Hack #8
+00:13:54 Hack #9
+00:17:20 Hack #10
+00:19:37 Conclusion</media:description>
+   <media:community>
+    <media:starRating count="402" average="5.00" min="1" max="5"/>
+    <media:statistics views="12231"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:kxjGQO5555w</id>
+  <yt:videoId>kxjGQO5555w</yt:videoId>
+  <yt:channelId>UC-9uQ57m8AVd2Q1MCaZgutA</yt:channelId>
+  <title>Build Your First AI Agent in 20 Minutes (Complete Beginner Guide)</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=kxjGQO5555w"/>
+  <author>
+   <name>Gael Breton</name>
+   <uri>https://www.youtube.com/channel/UC-9uQ57m8AVd2Q1MCaZgutA</uri>
+  </author>
+  <published>2025-06-04T12:18:13+00:00</published>
+  <updated>2026-04-13T01:40:24+00:00</updated>
+  <media:group>
+   <media:title>Build Your First AI Agent in 20 Minutes (Complete Beginner Guide)</media:title>
+   <media:content url="https://www.youtube.com/v/kxjGQO5555w?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i4.ytimg.com/vi/kxjGQO5555w/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Get all the prompts &amp; links shared in this video here: https://www.authorityhacker.com/freebies/ai-tools/
+
+Learn to build your FIRST AI Agent in N8N! This beginner-friendly tutorial shows you how to create a customer support agent that replaces expensive $40-150/month chatbot tools like ChatBase.
+
+Perfect for N8N beginners - I explain everything step-by-step!
+
+What you'll learn:
+✅ How AI agents work (simple explanation)
+✅ Your first N8N workflow from scratch
+✅ Connect Google's FREE Gemini API as your AI brain
+✅ Add memory so your agent remembers conversations
+✅ Use Google Docs as your knowledge base (no complex databases!)
+✅ Deploy on WordPress with simple code snippets
+✅ Write prompts that actually work
+
+Never built an agent before? No problem! I break down every concept and show you exactly what to click. By the end, you'll understand how to build ANY type of AI agent in N8N.
+
+Requirements:
+• N8N installation (I show you how for $5/month)
+• Free Google Gemini API key (1,500 requests/day FREE)
+• Basic Google Drive access
+
+This is your gateway into AI automation. Once you master this first agent, you can build agents for lead generation, customer support, data processing, and so much more!
+
+🔗 Download all prompts &amp; N8N workflow: [Link in comments]
+
+Timestamps:
+0:00 Demo &amp; What We're Building
+1:50 Setup Requirements &amp; Agent Basics
+4:02 Building Your First N8N Agent
+9:43 Writing Prompts That Work
+14:55 Deploy on WordPress
+20:30 Next Steps &amp; Advanced Possibilities
+
+Subscribe for more beginner AI automation tutorials! 🤖</media:description>
+   <media:community>
+    <media:starRating count="105" average="5.00" min="1" max="5"/>
+    <media:statistics views="3433"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:tmpBeBtB1uI</id>
+  <yt:videoId>tmpBeBtB1uI</yt:videoId>
+  <yt:channelId>UC-9uQ57m8AVd2Q1MCaZgutA</yt:channelId>
+  <title>The Secret AI App Only PROS Use (My Exact Setup)</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=tmpBeBtB1uI"/>
+  <author>
+   <name>Gael Breton</name>
+   <uri>https://www.youtube.com/channel/UC-9uQ57m8AVd2Q1MCaZgutA</uri>
+  </author>
+  <published>2025-05-16T13:07:56+00:00</published>
+  <updated>2026-04-29T21:18:57+00:00</updated>
+  <media:group>
+   <media:title>The Secret AI App Only PROS Use (My Exact Setup)</media:title>
+   <media:content url="https://www.youtube.com/v/tmpBeBtB1uI?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i1.ytimg.com/vi/tmpBeBtB1uI/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Get my 25 Best AI Tools for Marketers &amp; Entrepreneurs Swipe File: https://www.authorityhacker.com/freebies/ai-tools/
+
+----
+If you interact with AI chatbots daily for work and want a massive upgrade to your workflow, this video is for you! I'm diving deep into Typing Mind, a custom AI chatbot interface that empowers you to build bespoke AI agents. 
+
+These agents can automate complex tasks, allow for follow-up queries, and let you refine work with the AI – a level of control you don't get with tools like n8n or Make.
+
+Following the incredible response to my Authority Hacker podcast segment on this, I'm here to show you everything: settings, features, practical tips, and even the challenges. We'll start with powerful demos and then break down exactly how to replicate these advanced workflows.
+
+----
+
+CHAPTERS
+00:00:00 Intro
+00:00:48 Demo 1: SEO Analysis Agent
+00:02:30 Demo 2: Newsletter Creation Agent
+00:04:15 Why TypingMind?
+00:05:30 TypingMind Interface Walkthrough
+00:10:36 Tool &amp; Plugin Setup
+00:12:00 Setting up MCP Servers
+00:13:25 Creating and Using Agents
+00:15:44 Organizing Chats with Folders
+00:16:08 Calling Agents in Chats
+00:17:48 Conclusion</media:description>
+   <media:community>
+    <media:starRating count="256" average="5.00" min="1" max="5"/>
+    <media:statistics views="8102"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:A0P7sEXv_yE</id>
+  <yt:videoId>A0P7sEXv_yE</yt:videoId>
+  <yt:channelId>UC-9uQ57m8AVd2Q1MCaZgutA</yt:channelId>
+  <title>I Tested EVERY AI Model: My Brutally Honest Rankings</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=A0P7sEXv_yE"/>
+  <author>
+   <name>Gael Breton</name>
+   <uri>https://www.youtube.com/channel/UC-9uQ57m8AVd2Q1MCaZgutA</uri>
+  </author>
+  <published>2025-05-09T12:01:37+00:00</published>
+  <updated>2026-04-29T02:35:00+00:00</updated>
+  <media:group>
+   <media:title>I Tested EVERY AI Model: My Brutally Honest Rankings</media:title>
+   <media:content url="https://www.youtube.com/v/A0P7sEXv_yE?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i2.ytimg.com/vi/A0P7sEXv_yE/hqdefault.jpg" width="480" height="360"/>
+   <media:description>This is one of the most frequent questions I get via email so I thought I'd do a tier list.
+
+Let me know what other topics you'd like me to cover in the comments 👇</media:description>
+   <media:community>
+    <media:starRating count="180" average="5.00" min="1" max="5"/>
+    <media:statistics views="5613"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:f_7d0eDeL8c</id>
+  <yt:videoId>f_7d0eDeL8c</yt:videoId>
+  <yt:channelId>UC-9uQ57m8AVd2Q1MCaZgutA</yt:channelId>
+  <title>Unlimited Automations: $5 Setup in 5 Minutes (n8n Guide)</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=f_7d0eDeL8c"/>
+  <author>
+   <name>Gael Breton</name>
+   <uri>https://www.youtube.com/channel/UC-9uQ57m8AVd2Q1MCaZgutA</uri>
+  </author>
+  <published>2025-05-01T12:41:51+00:00</published>
+  <updated>2026-05-04T16:59:37+00:00</updated>
+  <media:group>
+   <media:title>Unlimited Automations: $5 Setup in 5 Minutes (n8n Guide)</media:title>
+   <media:content url="https://www.youtube.com/v/f_7d0eDeL8c?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i3.ytimg.com/vi/f_7d0eDeL8c/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Tired of expensive automation tools like Zapier or Make.com limiting your workflows? Discover how to self-host the powerful open-source automation platform n8n for just $5 per month and get it running in under 5 minutes – no scary code required!
+
+In this step-by-step tutorial, I'll show you the easiest, non-technical method using Railway to deploy your own n8n instance. Stop paying per task and unlock unlimited automation potential for your business at a fraction of the cost.
+
+What you'll learn in this video:
+
+- Why self-hosting n8n is drastically cheaper than cloud alternatives.
+- The simple, no-code way to deploy n8n using a Railway template (Takes minutes!).
+- How to access and set up your new n8n instance.
+- (Optional) Setting up a custom domain for your n8n.
+- How to easily update your self-hosted n8n without touching the command line.
+- Managing variables for advanced configurations (if needed).
+
+This is the perfect solution for small businesses, entrepreneurs, and creators looking to automate tasks like AI agent creation, marketing workflows, data processing, and more without breaking the bank.
+
+Get Started:
+
+Sign up for Railway: https://railway.com/
+n8n GitHub (Open Source): https://github.com/n8n-io/n8n</media:description>
+   <media:community>
+    <media:starRating count="156" average="5.00" min="1" max="5"/>
+    <media:statistics views="3594"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:jGQKOaiqRRw</id>
+  <yt:videoId>jGQKOaiqRRw</yt:videoId>
+  <yt:channelId>UC-9uQ57m8AVd2Q1MCaZgutA</yt:channelId>
+  <title>ChatGPT STEALTH upgrade</title>
+  <link rel="alternate" href="https://www.youtube.com/shorts/jGQKOaiqRRw"/>
+  <author>
+   <name>Gael Breton</name>
+   <uri>https://www.youtube.com/channel/UC-9uQ57m8AVd2Q1MCaZgutA</uri>
+  </author>
+  <published>2025-04-24T10:10:19+00:00</published>
+  <updated>2026-05-20T23:18:48+00:00</updated>
+  <media:group>
+   <media:title>ChatGPT STEALTH upgrade</media:title>
+   <media:content url="https://www.youtube.com/v/jGQKOaiqRRw?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i3.ytimg.com/vi/jGQKOaiqRRw/hqdefault.jpg" width="480" height="360"/>
+   <media:description></media:description>
+   <media:community>
+    <media:starRating count="14" average="5.00" min="1" max="5"/>
+    <media:statistics views="819"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:fyFVoIqe5K4</id>
+  <yt:videoId>fyFVoIqe5K4</yt:videoId>
+  <yt:channelId>UC-9uQ57m8AVd2Q1MCaZgutA</yt:channelId>
+  <title>GET FREE AI APIs</title>
+  <link rel="alternate" href="https://www.youtube.com/shorts/fyFVoIqe5K4"/>
+  <author>
+   <name>Gael Breton</name>
+   <uri>https://www.youtube.com/channel/UC-9uQ57m8AVd2Q1MCaZgutA</uri>
+  </author>
+  <published>2025-04-21T16:31:17+00:00</published>
+  <updated>2026-04-23T00:06:16+00:00</updated>
+  <media:group>
+   <media:title>GET FREE AI APIs</media:title>
+   <media:content url="https://www.youtube.com/v/fyFVoIqe5K4?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i3.ytimg.com/vi/fyFVoIqe5K4/hqdefault.jpg" width="480" height="360"/>
+   <media:description></media:description>
+   <media:community>
+    <media:starRating count="0" average="0.00" min="1" max="5"/>
+    <media:statistics views="667"/>
+   </media:community>
+  </media:group>
+ </entry>
+</feed>
