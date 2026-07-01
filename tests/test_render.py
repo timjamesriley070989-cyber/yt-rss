@@ -31,3 +31,24 @@ def test_group_by_day_orders_groups_newest_first():
     groups = group_by_day(videos, NOW)
     assert [label for label, _ in groups] == ["Today", "Yesterday"]
     assert len(groups[0][1]) == 2
+
+
+from ytrss.render import render_html
+
+
+def test_render_html_contains_video_and_is_self_contained():
+    videos = [_video(NOW - timedelta(hours=1), title="My Video", channel="Chan")]
+    html = render_html(videos, now=NOW, failed_count=0)
+    assert "My Video" in html
+    assert "Chan" in html
+    assert "Today" in html
+    assert "https://www.youtube.com/watch?v=x" in html
+    # self-contained: no external CSS/JS files referenced
+    assert "<link rel=\"stylesheet\"" not in html
+    assert "src=\"http" not in html.replace("https://i.ytimg.com", "")  # only thumbnails are remote
+
+
+def test_render_html_reports_failures():
+    html = render_html([], now=NOW, failed_count=7)
+    assert "7" in html
+    assert "no recent uploads" in html.lower()
