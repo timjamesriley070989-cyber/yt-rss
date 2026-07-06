@@ -38,3 +38,16 @@ def test_render_html_reports_failures_and_empty_state():
     html = render_html([], now=NOW, failed_count=7)
     assert "7" in html
     assert "no uploads in the last 24 hours" in html.lower()
+
+
+def test_render_html_has_watched_state_hooks():
+    video = Video(video_id="abc", title="T", channel_title="C",
+                  published=NOW - timedelta(hours=1),
+                  thumbnail="https://i3.ytimg.com/x.jpg")
+    html = render_html([video], now=NOW, failed_count=0)
+    assert 'data-vid="abc"' in html
+    assert 'class="dismiss"' in html
+    assert 'class="unhide"' in html
+    assert 'id="show-watched"' in html
+    assert 'id="count"' in html
+    assert 'id="caught-up"' in html

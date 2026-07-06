@@ -55,7 +55,8 @@ h1 { font-size: 1.35rem; font-weight: 700; letter-spacing: -.02em; margin: 0; }
 .count { font-size: .8rem; font-weight: 600; color: var(--muted);
   background: var(--chip); padding: 3px 10px; border-radius: 999px; }
 .tagline { color: var(--muted); font-size: .85rem; margin: 2px 0 14px; }
-.search { position: relative; }
+.controls { display: flex; gap: 12px; align-items: center; }
+.controls .search { position: relative; flex: 1; }
 .search svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
   width: 17px; height: 17px; color: var(--muted); pointer-events: none; }
 #filter {
@@ -65,17 +66,33 @@ h1 { font-size: 1.35rem; font-weight: 700; letter-spacing: -.02em; margin: 0; }
 }
 #filter:focus { border-color: var(--accent); background: var(--bg); }
 #filter::placeholder { color: var(--muted); }
+.show-watched { display: flex; align-items: center; gap: 6px; white-space: nowrap;
+  font-size: .82rem; color: var(--muted); cursor: pointer; user-select: none; }
+.show-watched input { accent-color: var(--accent); }
 #feed {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 28px 18px; margin-top: 24px;
 }
-.card { text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+.card { display: flex; flex-direction: column; }
+.card a { text-decoration: none; color: inherit; }
 .thumb-wrap {
   position: relative; border-radius: 14px; overflow: hidden; background: var(--skeleton);
   box-shadow: var(--shadow); transition: transform .18s ease, box-shadow .18s ease;
 }
 .card:hover .thumb-wrap { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+.thumb-link { display: block; }
 .thumb { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.dismiss, .unhide {
+  position: absolute; top: 8px; right: 8px; width: 26px; height: 26px; padding: 0;
+  border: none; border-radius: 50%; cursor: pointer; z-index: 2;
+  background: rgba(0,0,0,.62); color: #fff; font-size: 14px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+}
+.dismiss:hover, .unhide:hover { background: rgba(0,0,0,.85); }
+.unhide { display: none; }
+.card.watched .dismiss { display: none; }
+.card.watched .unhide { display: flex; }
+.card.watched { opacity: .45; }
 .card.new .thumb-wrap::after {
   content: "NEW"; position: absolute; top: 9px; left: 9px;
   background: var(--accent); color: var(--accent-contrast);
@@ -92,6 +109,7 @@ h1 { font-size: 1.35rem; font-weight: 700; letter-spacing: -.02em; margin: 0; }
   grid-column: 1 / -1; text-align: center; color: var(--muted);
   padding: 80px 20px; font-size: .95rem;
 }
+#caught-up { text-align: center; color: var(--muted); padding: 80px 20px; font-size: .95rem; }
 footer { color: var(--muted); font-size: .78rem; text-align: center; margin-top: 44px; }
 @media (max-width: 560px) {
   body { padding: 0 14px 48px; }
@@ -102,34 +120,91 @@ footer { color: var(--muted); font-size: .78rem; text-align: center; margin-top:
 </head>
 <body>
 <header>
-  <div class="titles"><h1>Subscriptions</h1><span class="count">$count</span></div>
+  <div class="titles"><h1>Subscriptions</h1><span class="count" id="count">$count</span></div>
   <p class="tagline">New uploads from the last 24 hours &middot; Shorts hidden</p>
-  <div class="search">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-         stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-    <input id="filter" type="search" placeholder="Filter by channel…" autocomplete="off">
+  <div class="controls">
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="filter" type="search" placeholder="Filter by channel…" autocomplete="off">
+    </div>
+    <label class="show-watched"><input type="checkbox" id="show-watched"> Show watched</label>
   </div>
 </header>
 <main id="feed">
 $body
 </main>
+<p id="caught-up" hidden>You're all caught up &#127881;</p>
 <footer>Updated $updated UTC$failed</footer>
 <script>
 (function () {
-  var KEY = "yt-rss-last-visit";
-  var last = parseInt(localStorage.getItem(KEY) || "0", 10);
-  document.querySelectorAll(".card").forEach(function (card) {
-    if (parseInt(card.dataset.ts, 10) * 1000 > last) card.classList.add("new");
+  var VKEY = "yt-rss-last-visit";
+  var WKEY = "yt-rss-watched";
+  var cards = Array.prototype.slice.call(document.querySelectorAll(".card"));
+  var present = {};
+  cards.forEach(function (c) { present[c.dataset.vid] = true; });
+
+  var last = parseInt(localStorage.getItem(VKEY) || "0", 10);
+  cards.forEach(function (c) {
+    if (parseInt(c.dataset.ts, 10) * 1000 > last) c.classList.add("new");
   });
-  localStorage.setItem(KEY, Date.now().toString());
+  localStorage.setItem(VKEY, Date.now().toString());
+
+  var watched = {};
+  try {
+    JSON.parse(localStorage.getItem(WKEY) || "[]").forEach(function (id) {
+      if (present[id]) watched[id] = true;
+    });
+  } catch (e) {}
+  function saveWatched() { localStorage.setItem(WKEY, JSON.stringify(Object.keys(watched))); }
+  saveWatched();
 
   var input = document.getElementById("filter");
-  input.addEventListener("input", function () {
+  var toggle = document.getElementById("show-watched");
+  var countEl = document.getElementById("count");
+  var caughtUp = document.getElementById("caught-up");
+
+  function applyVisibility() {
     var q = input.value.trim().toLowerCase();
-    document.querySelectorAll(".card").forEach(function (card) {
-      card.style.display = !q || card.dataset.channel.indexOf(q) !== -1 ? "" : "none";
+    var showWatched = toggle.checked;
+    var unwatched = 0, visible = 0;
+    cards.forEach(function (c) {
+      var w = !!watched[c.dataset.vid];
+      c.classList.toggle("watched", w);
+      if (!w) unwatched++;
+      var matches = !q || c.dataset.channel.indexOf(q) !== -1;
+      var show = matches && (!w || showWatched);
+      c.style.display = show ? "" : "none";
+      if (show) visible++;
+    });
+    countEl.textContent = unwatched + " unwatched";
+    caughtUp.hidden = !(cards.length > 0 && visible === 0 && !q && !showWatched);
+  }
+
+  function setWatched(id, val) {
+    if (val) { watched[id] = true; } else { delete watched[id]; }
+    saveWatched();
+    applyVisibility();
+  }
+
+  cards.forEach(function (c) {
+    var id = c.dataset.vid;
+    c.querySelectorAll("a[href]").forEach(function (a) {
+      a.addEventListener("click", function () { setWatched(id, true); });
+    });
+    var d = c.querySelector(".dismiss");
+    if (d) d.addEventListener("click", function (e) {
+      e.preventDefault(); e.stopPropagation(); setWatched(id, true);
+    });
+    var u = c.querySelector(".unhide");
+    if (u) u.addEventListener("click", function (e) {
+      e.preventDefault(); e.stopPropagation(); setWatched(id, false);
     });
   });
+
+  input.addEventListener("input", applyVisibility);
+  toggle.addEventListener("change", applyVisibility);
+  applyVisibility();
 })();
 </script>
 </body>
@@ -143,15 +218,21 @@ def render_html(videos: list[Video], *, now: datetime, failed_count: int) -> str
     else:
         cards: list[str] = []
         for v in videos:
+            url = _html.escape(v.url)
             cards.append(
-                f'<a class="card" href="{_html.escape(v.url)}" target="_blank" rel="noopener" '
+                f'<div class="card" data-vid="{_html.escape(v.video_id)}" '
                 f'data-channel="{_html.escape(v.channel_title.lower())}" '
                 f'data-ts="{int(v.published.timestamp())}">'
                 f'<div class="thumb-wrap">'
-                f'<img class="thumb" loading="lazy" src="{_html.escape(v.thumbnail)}" alt=""></div>'
-                f'<div class="body"><h2>{_html.escape(v.title)}</h2>'
+                f'<a class="thumb-link" href="{url}" target="_blank" rel="noopener">'
+                f'<img class="thumb" loading="lazy" src="{_html.escape(v.thumbnail)}" alt=""></a>'
+                f'<button class="dismiss" type="button" aria-label="Mark watched">&times;</button>'
+                f'<button class="unhide" type="button" aria-label="Unhide">&#8617;</button>'
+                f'</div>'
+                f'<a class="body" href="{url}" target="_blank" rel="noopener">'
+                f'<h2>{_html.escape(v.title)}</h2>'
                 f'<div class="sub">{_html.escape(v.channel_title)} &middot; '
-                f'{relative_time(v.published, now)}</div></div></a>'
+                f'{relative_time(v.published, now)}</div></a></div>'
             )
         body = "\n".join(cards)
     failed = f" &middot; {failed_count} channels failed to fetch" if failed_count else ""
